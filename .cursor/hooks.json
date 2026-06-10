@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "matcher": "Write",
+        "command": "bash .cursor/hooks/guard-unity-writes.sh"
+      }
+    ],
+    "stop": [
+      {
+        "command": "bash .claude/hooks/format-on-stop.sh"
+      }
+    ]
+  }
+}

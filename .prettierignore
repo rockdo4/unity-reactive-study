@@ -1,0 +1,21 @@
+# 벤더 에셋 (다운로드·수정 금지)
+Assets/TextMesh Pro/
+
+# Unity 생성·캐시 (포맷 금지)
+Library/
+Temp/
+Logs/
+obj/
+Build/
+build/
+UserSettings/
+
+# Unity YAML / 메타 (UnityYAMLMerge·에디터 전용)
+**/*.meta
+**/*.unity
+**/*.prefab
+**/*.asset
+**/*.mat
+**/*.anim
+**/*.controller
+ 

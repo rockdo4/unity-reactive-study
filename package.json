@@ -1,0 +1,11 @@
+{
+  "name": "unity-template",
+  "private": true,
+  "devDependencies": {
+    "prettier": "3.5.3"
+  },
+  "scripts": {
+    "format": "prettier --write --ignore-path .prettierignore .",
+    "format:check": "prettier --check --ignore-path .prettierignore ."
+  }
+}

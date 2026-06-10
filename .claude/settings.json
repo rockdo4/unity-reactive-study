@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(dotnet csharpier *)",
+      "Bash(npm ci *)",
+      "Bash(npm exec *)",
+      "Bash(npm run format*)"
+    ],
+    "deny": [
+      "Write(./**/*.meta)",
+      "Edit(./**/packages-lock.json)",
+      "Edit(./**/*.unity)",
+      "Write(./**/*.unity)"
+    ],
+    "defaultMode": "default"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/format-on-stop.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

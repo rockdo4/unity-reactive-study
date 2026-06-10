@@ -1,0 +1,66 @@
+# =============================================================================
+# Unity Project .gitattributes
+# 줄 끝 문자(LF), Unity YAML 머지 드라이버 설정.
+# (GitHub 템플릿 저장소 호환을 위해 Git LFS 미사용. 새 프로젝트에서 필요 시 별도 도입.)
+#
+# UnityYAMLMerge 머지 드라이버를 사용하려면 한 번만 git 설정을 등록해야 함:
+#   git config --global merge.unityyamlmerge.name "Unity SmartMerge (UnityYAMLMerge)"
+#   git config --global merge.unityyamlmerge.driver \
+#     '"<Unity 설치 경로>/Editor/Data/Tools/UnityYAMLMerge.exe" merge -p --force --fallback none %O %B %A %A'
+#   git config --global merge.unityyamlmerge.recursive binary
+
+# -----------------------------------------------------------------------------
+# 기본: 모든 텍스트 파일은 LF로 정규화
+* text=auto
+# 텍스트 파일 명시 (LF)
+*.cs           text eol=lf diff=csharp
+*.shader       text eol=lf
+*.shadergraph  text eol=lf
+*.cginc        text eol=lf
+*.hlsl         text eol=lf
+*.compute      text eol=lf
+*.uss          text eol=lf
+*.uxml         text eol=lf
+*.json         text eol=lf
+*.xml          text eol=lf
+*.yaml         text eol=lf
+*.yml          text eol=lf
+*.md           text eol=lf
+*.txt          text eol=lf
+*.asmdef       text eol=lf
+*.asmref       text eol=lf
+*.inputactions text eol=lf
+*.meta         text eol=lf
+# Windows 전용 스크립트는 CRLF 유지
+*.bat          text eol=crlf
+*.cmd          text eol=crlf
+*.ps1          text eol=crlf
+# Unity YAML 머지 드라이버 (scene/prefab/asset 머지 충돌 자동 해결)
+*.unity            merge=unityyamlmerge eol=lf
+*.prefab           merge=unityyamlmerge eol=lf
+*.asset            merge=unityyamlmerge eol=lf
+*.mat              merge=unityyamlmerge eol=lf
+*.anim             merge=unityyamlmerge eol=lf
+*.controller       merge=unityyamlmerge eol=lf
+*.overrideController merge=unityyamlmerge eol=lf
+*.physicMaterial   merge=unityyamlmerge eol=lf
+*.physicsMaterial2D merge=unityyamlmerge eol=lf
+*.playable         merge=unityyamlmerge eol=lf
+*.mask             merge=unityyamlmerge eol=lf
+*.brush            merge=unityyamlmerge eol=lf
+*.flare            merge=unityyamlmerge eol=lf
+*.fontsettings     merge=unityyamlmerge eol=lf
+*.guiskin          merge=unityyamlmerge eol=lf
+*.giparams         merge=unityyamlmerge eol=lf
+*.preset           merge=unityyamlmerge eol=lf
+*.lighting         merge=unityyamlmerge eol=lf
+*.signal           merge=unityyamlmerge eol=lf
+*.spriteatlas      merge=unityyamlmerge eol=lf
+*.terrainlayer     merge=unityyamlmerge eol=lf
+* !text !filter !merge !diff
+
+# -----------------------------------------------------------------------------
+# 바이너리 자산: 줄끝 정규화·diff 비활성 (바이너리 손상 방지)
+# 폰트 (.ttf/.otf 원본). TMP SDF .asset 은 YAML 텍스트라 위 규칙을 따른다.
+*.ttf  binary
+*.otf  binary

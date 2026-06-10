@@ -1,0 +1,27 @@
+# CSharpier 및 Unity C# 컨벤션
+# https://csharpier.com/docs/Configuration
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{yml,yaml,json}]
+indent_size = 2
+
+[*.md]
+indent_size = 4
+
+[*.{bat,cmd,ps1}]
+end_of_line = crlf
+
+[*.cs]
+indent_size = 4
+max_line_length = 120
+# 빌드 타깃별 분기를 양쪽 모두 포맷. 세미콜론 = set 구분자, 콤마 = set 내부 심볼.
+# 빈 첫 항목(`;`)은 "어떤 심볼도 정의되지 않은 상태"를 의미.
+csharpier_preprocessor_symbol_sets = ;UNITY_EDITOR;UNITY_STANDALONE_WIN;UNITY_STANDALONE_OSX;UNITY_STANDALONE_LINUX;UNITY_ANDROID;UNITY_IOS
