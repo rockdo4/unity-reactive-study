@@ -66,7 +66,7 @@
     "*.sln": "*.csproj",
     "*.slnx": "*.csproj"
   },
-  "dotnet.defaultSolution": "unity-template.sln",
+  "dotnet.defaultSolution": "unity-reactive-study.slnx",
   "editor.formatOnSave": true,
   "[csharp]": {
     "editor.defaultFormatter": "csharpier.csharpier-vscode"
