@@ -19,6 +19,13 @@ Unity 6.3 / URP 17 프로젝트. Claude Code·Cursor 등 모든 에이전트의 
 - Unity 에디터가 컴파일한다. `dotnet build`/`dotnet test`로 검증하지 않는다(.csproj는 IDE용이며 Unity가 재생성).
 - 코드 변경 후 Unity MCP `Unity_GetConsoleLogs`로 에러를 확인한다. 테스트는 Unity Test Framework.
 
+## 강의 자료·배포
+
+- **강사용 데모 씬**은 챕터별 SceneCreator가 정본이며 **커밋하지 않는다**(`Assets/Scenes/*.unity`는 `.gitignore`). `Tools > Reactive Study > Create All Scenes`로 생성·갱신한다.
+- **학생 배포**: 교안은 노션, 데모는 `Assets/StudentPackage/`(클래스명 `My*`, 1부 완성본·2부 스켈레톤)에서 익스포트한 데모별 `.unitypackage`로 배포한다(학생은 빈 URP 프로젝트). StudentPackage의 씬·스크립트는 커밋한다. 절차·운영 규칙은 `Docs/강사용/00. 학생 배포 가이드.md`.
+- **동기화 규칙**: 강사용 런타임 코드(`Assets/Scripts/`)나 씬 구성을 바꾸면 → 대응 `My*` 스크립트(`Assets/StudentPackage/Scripts/`)를 같이 고치고 → `Create All Student Scenes`로 학생 씬을 재생성하고 → 해당 패키지를 다시 익스포트한다. `My*`의 직렬화 필드명은 원본과 **동일**해야 한다(`StudentPackageCreator`의 SwapComponent가 필드명으로 값을 복사하며, 어긋나면 명시적 예외로 실패).
+- **문서**: `Docs/교안/`(학생용·노션 배포) · `Docs/강사용/`(차시별 이론/따라하기 + 사전 학습·학생 배포 가이드). 연습문제(실습)는 강의에서 빠졌고 `Archive/실습/`에 보관한다.
+
 ## 패키지 소스
 
 - `Library/PackageCache/`에 URP·InputSystem 등 실제 소스가 있으나 `.gitignore`라 Glob/Grep에 안 잡힌다. 참조 시: `rg --no-ignore -t cs "<패턴>" Library/PackageCache/<패키지>@*/`
