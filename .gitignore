@@ -83,6 +83,11 @@ crashlytics-build.properties
 # TestRunner generated files
 InitTestScene*.unity*
 
+# 강사용 데모 씬은 챕터별 SceneCreator 가 정본 — 커밋하지 않는다(Tools > Reactive Study > Create All Scenes 로 재생성).
+# StudentPackage/Scenes 는 경로가 달라 이 규칙에 걸리지 않으며, GUID 안정성을 위해 커밋한다.
+/[Aa]ssets/[Ss]cenes/*.unity
+/[Aa]ssets/[Ss]cenes/*.unity.meta
+
 # Addressables default ignores, before user customizations
 /ServerData
 /[Aa]ssets/StreamingAssets/aa*

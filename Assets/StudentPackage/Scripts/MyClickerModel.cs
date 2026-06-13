@@ -1,0 +1,77 @@
+using System;
+using R3;
+
+public sealed class MyClickerModel : IDisposable
+{
+    private const double ClickUpgradeCostGrowth = 1.6;
+    private const double AutoUpgradeCostGrowth = 1.8;
+    private const int FeverMultiplier = 2;
+
+    public ReactiveProperty<long> Gold { get; } = new(0);
+    public ReactiveProperty<long> GoldPerClick { get; } = new(1);
+    public ReactiveProperty<long> GoldPerSecond { get; } = new(0);
+    public ReactiveProperty<long> ClickUpgradeCost { get; } = new(10);
+    public ReactiveProperty<long> AutoUpgradeCost { get; } = new(25);
+    public ReactiveProperty<bool> IsFever { get; } = new(false);
+
+    public ReadOnlyReactiveProperty<bool> CanBuyClickUpgrade { get; }
+    public ReadOnlyReactiveProperty<bool> CanBuyAutoUpgrade { get; }
+
+    public TimeSpan FeverDuration { get; } = TimeSpan.FromSeconds(5);
+
+    private readonly CompositeDisposable m_Disposables = new();
+
+    public MyClickerModel()
+    {
+        // 교안 06 — CanBuyClickUpgrade / CanBuyAutoUpgrade 를 CombineLatest 로 파생하고,
+        // 자동 수입 Interval 스트림을 만들고, 각 ReactiveProperty 를 m_Disposables 에 AddTo 하세요.
+        CanBuyClickUpgrade = null!;
+        CanBuyAutoUpgrade = null!;
+    }
+
+    public long Click()
+    {
+        long gain = GoldPerClick.Value * (IsFever.Value ? FeverMultiplier : 1);
+        Gold.Value += gain;
+        return gain;
+    }
+
+    public void AddBonus(long amount)
+    {
+        Gold.Value += amount;
+    }
+
+    public bool TryBuyClickUpgrade()
+    {
+        long cost = ClickUpgradeCost.Value;
+        if (Gold.Value < cost)
+            return false;
+        Gold.Value -= cost;
+        GoldPerClick.Value += 1;
+        ClickUpgradeCost.Value = (long)Math.Ceiling(cost * ClickUpgradeCostGrowth);
+        return true;
+    }
+
+    public bool TryBuyAutoUpgrade()
+    {
+        long cost = AutoUpgradeCost.Value;
+        if (Gold.Value < cost)
+            return false;
+        Gold.Value -= cost;
+        GoldPerSecond.Value += 1;
+        AutoUpgradeCost.Value = (long)Math.Ceiling(cost * AutoUpgradeCostGrowth);
+        return true;
+    }
+
+    public bool TryStartFever()
+    {
+        // 교안 06 — 이미 피버면 false. 아니면 IsFever 를 켜고 Observable.Timer(FeverDuration) 로
+        // FeverDuration 뒤 자동으로 끄는 구독을 만든 뒤 true 를 반환하세요.
+        return false;
+    }
+
+    public void Dispose()
+    {
+        m_Disposables.Dispose();
+    }
+}

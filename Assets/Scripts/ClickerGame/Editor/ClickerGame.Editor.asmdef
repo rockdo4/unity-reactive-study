@@ -3,6 +3,7 @@
     "rootNamespace": "ReactiveStudy.Clicker.Editor",
     "references": [
         "ClickerGame",
+        "ReactiveBasics.Editor",
         "Unity.InputSystem",
         "Unity.TextMeshPro",
         "UnityEngine.UI"
