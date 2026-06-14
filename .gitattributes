@@ -61,6 +61,45 @@
 
 # -----------------------------------------------------------------------------
 # 바이너리 자산: 줄끝 정규화·diff 비활성 (바이너리 손상 방지)
-# 폰트 (.ttf/.otf 원본). TMP SDF .asset 은 YAML 텍스트라 위 규칙을 따른다.
+# core.autocrlf=true 환경에서 위 `* !text`가 모든 파일을 unspecified로 두면
+# git 휴리스틱이 폰트/이미지를 텍스트로 오판해 CRLF↔LF 변환으로 깨뜨린다.
+# 아래 확장자는 binary(= -text -diff)로 못박아 정규화를 원천 차단한다.
+# (TMP SDF .asset 은 YAML 텍스트라 위 merge 규칙을 따른다.)
+# 폰트
 *.ttf  binary
 *.otf  binary
+*.ttc  binary
+# 이미지
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.bmp  binary
+*.tga  binary
+*.tif  binary
+*.tiff binary
+*.psd  binary
+*.exr  binary
+*.hdr  binary
+# 오디오
+*.wav  binary
+*.mp3  binary
+*.ogg  binary
+*.aif  binary
+*.aiff binary
+# 비디오
+*.mp4  binary
+*.mov  binary
+*.webm binary
+# 3D 모델
+*.fbx  binary
+*.obj  binary
+*.blend binary
+# 기타 바이너리
+*.dll  binary
+*.pdb  binary
+*.so   binary
+*.dylib binary
+*.bundle binary
+*.unitypackage binary
+*.cubemap binary
