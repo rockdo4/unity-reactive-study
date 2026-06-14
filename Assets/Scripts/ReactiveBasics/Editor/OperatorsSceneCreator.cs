@@ -47,9 +47,9 @@ namespace ReactiveStudy.Basics.Editor
             Canvas canvas = ReactiveSceneUi.CreateCanvasAndEventSystem();
             ReactiveSceneUi.CreateTitle(
                 canvas,
-                "03. 연산자 — Debounce · Chunk · ThrottleFirst · DistinctUntilChanged (R3)"
+                "03. 연산자 - Debounce · Chunk · ThrottleFirst · DistinctUntilChanged (R3)"
             );
-            BuildOperatorsPanel(canvas);
+            BuildOperatorsPanel(canvas, new Vector2(40, -90));
 
             EditorSceneManager.MarkSceneDirty(scene);
             if (save)
@@ -60,17 +60,17 @@ namespace ReactiveStudy.Basics.Editor
             Debug.Log("[OperatorsSceneCreator] 씬 생성 완료: " + ScenePath);
         }
 
-        private static void BuildOperatorsPanel(Canvas canvas)
+        internal static void BuildOperatorsPanel(Canvas canvas, Vector2 panelPos)
         {
             GameObject panel = ReactiveSceneUi.CreatePanel(
                 canvas.transform,
                 "Panel2_Operators",
-                new Vector2(40, -90),
+                panelPos,
                 new Vector2(900, 310)
             );
             ReactiveSceneUi.CreateSectionTitle(
                 panel.transform,
-                "2. 연산자 — Debounce · Chunk · ThrottleFirst · DistinctUntilChanged (교안 03)"
+                "2. 연산자 - Debounce · Chunk · ThrottleFirst · DistinctUntilChanged (교안 03)"
             );
 
             TextMeshProUGUI doubleClick = ReactiveSceneUi.CreateBodyText(

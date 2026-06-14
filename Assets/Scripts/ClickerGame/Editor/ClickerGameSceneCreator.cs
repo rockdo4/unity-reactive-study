@@ -17,14 +17,14 @@ namespace ReactiveStudy.Clicker.Editor
     /// </summary>
     public static class ClickerGameSceneCreator
     {
-        public const string ScenePath = "Assets/Scenes/06_ReactiveClicker.unity";
+        public const string ScenePath = "Assets/Scenes/ReactiveClicker.unity";
 
-        [MenuItem("Tools/Reactive Study/06. 클리커 씬 생성")]
+        [MenuItem("Tools/Reactive Study/02. 클리커(2부) 씬 생성")]
         public static void CreateSceneInteractive()
         {
             if (
                 !EditorUtility.DisplayDialog(
-                    "06. 클리커 씬 생성",
+                    "02. 클리커(2부) 씬 생성",
                     "새 씬을 만들어 리액티브 클리커(완성본)를 구성합니다.\n"
                         + "현재 열린 씬은 닫히며, 저장하지 않은 변경은 먼저 저장 여부를 묻습니다.\n\n계속하시겠습니까?",
                     "생성",

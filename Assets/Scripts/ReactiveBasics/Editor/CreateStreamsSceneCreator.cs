@@ -45,8 +45,8 @@ namespace ReactiveStudy.Basics.Editor
             Scene scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
 
             Canvas canvas = ReactiveSceneUi.CreateCanvasAndEventSystem();
-            ReactiveSceneUi.CreateTitle(canvas, "02. Observable 만들기 — 팩토리 · Subject · FromEvent (R3)");
-            BuildCreatePanel(canvas);
+            ReactiveSceneUi.CreateTitle(canvas, "02. Observable 만들기 - 팩토리 · Subject · FromEvent (R3)");
+            BuildCreatePanel(canvas, new Vector2(40, -90));
 
             EditorSceneManager.MarkSceneDirty(scene);
             if (save)
@@ -57,17 +57,17 @@ namespace ReactiveStudy.Basics.Editor
             Debug.Log("[CreateStreamsSceneCreator] 씬 생성 완료: " + ScenePath);
         }
 
-        private static void BuildCreatePanel(Canvas canvas)
+        internal static void BuildCreatePanel(Canvas canvas, Vector2 panelPos)
         {
             GameObject panel = ReactiveSceneUi.CreatePanel(
                 canvas.transform,
                 "Panel1_Create",
-                new Vector2(40, -90),
+                panelPos,
                 new Vector2(900, 300)
             );
             ReactiveSceneUi.CreateSectionTitle(
                 panel.transform,
-                "1. Observable 만들기 — 팩토리 · Subject · FromEvent (교안 02)"
+                "1. Observable 만들기 - 팩토리 · Subject · FromEvent (교안 02)"
             );
 
             Button range = ReactiveSceneUi.CreateButton(

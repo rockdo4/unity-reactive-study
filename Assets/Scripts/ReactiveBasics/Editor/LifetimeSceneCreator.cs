@@ -45,8 +45,8 @@ namespace ReactiveStudy.Basics.Editor
             Scene scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
 
             Canvas canvas = ReactiveSceneUi.CreateCanvasAndEventSystem();
-            ReactiveSceneUi.CreateTitle(canvas, "04. 구독 수명 — CompositeDisposable · ObservableTracker (R3)");
-            BuildLifetimePanel(canvas);
+            ReactiveSceneUi.CreateTitle(canvas, "04. 구독 수명 - CompositeDisposable · ObservableTracker (R3)");
+            BuildLifetimePanel(canvas, new Vector2(40, -90));
 
             EditorSceneManager.MarkSceneDirty(scene);
             if (save)
@@ -57,17 +57,17 @@ namespace ReactiveStudy.Basics.Editor
             Debug.Log("[LifetimeSceneCreator] 씬 생성 완료: " + ScenePath);
         }
 
-        private static void BuildLifetimePanel(Canvas canvas)
+        internal static void BuildLifetimePanel(Canvas canvas, Vector2 panelPos)
         {
             GameObject panel = ReactiveSceneUi.CreatePanel(
                 canvas.transform,
                 "Panel3_Lifetime",
-                new Vector2(40, -90),
+                panelPos,
                 new Vector2(900, 320)
             );
             ReactiveSceneUi.CreateSectionTitle(
                 panel.transform,
-                "3. 구독 수명 — CompositeDisposable · ObservableTracker (교안 04)"
+                "3. 구독 수명 - CompositeDisposable · ObservableTracker (교안 04)"
             );
 
             Button add = ReactiveSceneUi.CreateButton(

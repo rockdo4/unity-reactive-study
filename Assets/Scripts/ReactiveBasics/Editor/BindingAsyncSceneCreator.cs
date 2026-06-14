@@ -48,10 +48,10 @@ namespace ReactiveStudy.Basics.Editor
             Canvas canvas = ReactiveSceneUi.CreateCanvasAndEventSystem();
             ReactiveSceneUi.CreateTitle(
                 canvas,
-                "05. Unity 통합과 비동기 — ReactiveProperty 바인딩 · SubscribeAwait (R3)"
+                "05. Unity 통합과 비동기 - ReactiveProperty 바인딩 · SubscribeAwait (R3)"
             );
-            BuildBindingPanel(canvas);
-            BuildAsyncPanel(canvas);
+            BuildBindingPanel(canvas, new Vector2(40, -90));
+            BuildAsyncPanel(canvas, new Vector2(40, -410));
 
             EditorSceneManager.MarkSceneDirty(scene);
             if (save)
@@ -62,15 +62,15 @@ namespace ReactiveStudy.Basics.Editor
             Debug.Log("[BindingAsyncSceneCreator] 씬 생성 완료: " + ScenePath);
         }
 
-        private static void BuildBindingPanel(Canvas canvas)
+        internal static void BuildBindingPanel(Canvas canvas, Vector2 panelPos)
         {
             GameObject panel = ReactiveSceneUi.CreatePanel(
                 canvas.transform,
                 "Panel4_Binding",
-                new Vector2(40, -90),
+                panelPos,
                 new Vector2(900, 300)
             );
-            ReactiveSceneUi.CreateSectionTitle(panel.transform, "4. ReactiveProperty 바인딩 — CombineLatest (교안 05)");
+            ReactiveSceneUi.CreateSectionTitle(panel.transform, "4. ReactiveProperty 바인딩 - CombineLatest (교안 05)");
 
             Button damage = ReactiveSceneUi.CreateButton(
                 panel.transform,
@@ -150,15 +150,15 @@ namespace ReactiveStudy.Basics.Editor
             so.ApplyModifiedProperties();
         }
 
-        private static void BuildAsyncPanel(Canvas canvas)
+        internal static void BuildAsyncPanel(Canvas canvas, Vector2 panelPos)
         {
             GameObject panel = ReactiveSceneUi.CreatePanel(
                 canvas.transform,
                 "Panel5_Async",
-                new Vector2(40, -410),
+                panelPos,
                 new Vector2(900, 310)
             );
-            ReactiveSceneUi.CreateSectionTitle(panel.transform, "5. 비동기 통합 — SubscribeAwait · 취소 (교안 05)");
+            ReactiveSceneUi.CreateSectionTitle(panel.transform, "5. 비동기 통합 - SubscribeAwait · 취소 (교안 05)");
 
             Button sequential = ReactiveSceneUi.CreateButton(
                 panel.transform,
