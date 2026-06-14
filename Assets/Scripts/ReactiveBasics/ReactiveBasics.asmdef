@@ -3,6 +3,7 @@
     "rootNamespace": "ReactiveStudy.Basics",
     "references": [
         "R3.Unity",
+        "UniTask",
         "Unity.InputSystem",
         "Unity.TextMeshPro",
         "UnityEngine.UI"

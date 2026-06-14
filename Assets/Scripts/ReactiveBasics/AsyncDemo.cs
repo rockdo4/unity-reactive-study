@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using R3;
 using TMPro;
 using UnityEngine;
@@ -62,10 +62,12 @@ namespace ReactiveStudy.Basics
                 .AddTo(this);
         }
 
-        // 가짜 비동기 로드 — 실제로는 Addressables 로드, 네트워크 요청 등이 들어갈 자리
-        private static async ValueTask FakeLoadAsync(CancellationToken ct)
+        // 가짜 비동기 로드 — 실제로는 Addressables 로드, 네트워크 요청 등이 들어갈 자리.
+        // 프로젝트의 단발 비동기는 UniTask로 작성한다. UniTask는 R3의 await 연산자
+        // (SubscribeAwait의 ValueTask 람다) 안에서 그대로 await된다.
+        private static async UniTask FakeLoadAsync(CancellationToken ct)
         {
-            await Task.Delay(TimeSpan.FromSeconds(1.5), ct);
+            await UniTask.Delay(TimeSpan.FromSeconds(1.5), cancellationToken: ct);
         }
 
         private void Log(string message)

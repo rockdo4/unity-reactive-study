@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using R3;
 using TMPro;
 using UnityEngine;
@@ -53,9 +53,10 @@ public class MyAsyncDemo : MonoBehaviour
             .AddTo(this);
     }
 
-    private static async ValueTask FakeLoadAsync(CancellationToken ct)
+    // 프로젝트의 단발 비동기는 UniTask로 작성한다.
+    private static async UniTask FakeLoadAsync(CancellationToken ct)
     {
-        await Task.Delay(TimeSpan.FromSeconds(1.5), ct);
+        await UniTask.Delay(TimeSpan.FromSeconds(1.5), cancellationToken: ct);
     }
 
     private void Log(string message)
