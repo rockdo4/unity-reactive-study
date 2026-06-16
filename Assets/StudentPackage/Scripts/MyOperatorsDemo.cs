@@ -32,50 +32,11 @@ public class MyOperatorsDemo : MonoBehaviour
         SetupTapAndCooldown();
     }
 
-    private void SetupDoubleClick()
-    {
-        var clickStream = Observable
-            .EveryUpdate()
-            .Where(_ => Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
-            .Share();
+    private void SetupDoubleClick() { }
 
-        clickStream
-            .Chunk(clickStream.Debounce(TimeSpan.FromMilliseconds(250)))
-            .Where(clicks => clicks.Length >= 2)
-            .Subscribe(clicks =>
-                SetText(m_DoubleClickText, $"더블클릭! ({clicks.Length}회 묶음, 프레임 {Time.frameCount})")
-            )
-            .AddTo(this);
-    }
+    private void SetupSearchDebounce() { }
 
-    private void SetupSearchDebounce()
-    {
-        m_SearchInput
-            .onValueChanged.AsObservable()
-            .Debounce(TimeSpan.FromMilliseconds(500))
-            .DistinctUntilChanged()
-            .Subscribe(query =>
-                SetText(
-                    m_SearchResultText,
-                    string.IsNullOrWhiteSpace(query) ? "검색 대기 중..." : $"검색 실행: \"{query}\""
-                )
-            )
-            .AddTo(this);
-    }
-
-    private void SetupTapAndCooldown()
-    {
-        var taps = m_TapButton.OnClickAsObservable().Share();
-
-        taps.Chunk(TimeSpan.FromMilliseconds(500), 3)
-            .Where(xs => xs.Length >= 3)
-            .Subscribe(_ => SetText(m_TapText, $"3연타! (프레임 {Time.frameCount})"))
-            .AddTo(this);
-
-        taps.ThrottleFirst(TimeSpan.FromSeconds(2))
-            .Subscribe(_ => SetText(m_CooldownText, $"발동! 2초 쿨다운 (프레임 {Time.frameCount})"))
-            .AddTo(this);
-    }
+    private void SetupTapAndCooldown() { }
 
     private static void SetText(TextMeshProUGUI label, string text)
     {

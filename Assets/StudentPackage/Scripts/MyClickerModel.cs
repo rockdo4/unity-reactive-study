@@ -23,8 +23,6 @@ public sealed class MyClickerModel : IDisposable
 
     public MyClickerModel()
     {
-        // 교안 06 — CanBuyClickUpgrade / CanBuyAutoUpgrade 를 CombineLatest 로 파생하고,
-        // 자동 수입 Interval 스트림을 만들고, 각 ReactiveProperty 를 m_Disposables 에 AddTo 하세요.
         CanBuyClickUpgrade = null!;
         CanBuyAutoUpgrade = null!;
     }
@@ -65,8 +63,6 @@ public sealed class MyClickerModel : IDisposable
 
     public bool TryStartFever()
     {
-        // 교안 06 — 이미 피버면 false. 아니면 IsFever 를 켜고 Observable.Timer(FeverDuration) 로
-        // FeverDuration 뒤 자동으로 끄는 구독을 만든 뒤 true 를 반환하세요.
         return false;
     }
 

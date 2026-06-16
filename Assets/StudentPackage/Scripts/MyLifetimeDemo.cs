@@ -40,62 +40,7 @@ public class MyLifetimeDemo : MonoBehaviour
         ObservableTracker.EnableStackTrace = true;
     }
 
-    private void Start()
-    {
-        m_AddSubscriptionButton
-            .OnClickAsObservable()
-            .Subscribe(_ =>
-            {
-                int id = ++m_AddedCount;
-                Observable
-                    .Interval(System.TimeSpan.FromSeconds(5))
-                    .Subscribe(_ => Debug.Log($"[LifetimeDemo] 관리되는 구독 #{id} tick"))
-                    .AddTo(m_Disposables);
-                UpdateStatus($"구독 #{id} 추가");
-            })
-            .AddTo(this);
-
-        m_DisposeAllButton
-            .OnClickAsObservable()
-            .Subscribe(_ =>
-            {
-                m_Disposables.Clear();
-                UpdateStatus("전체 해제 (Clear)");
-            })
-            .AddTo(this);
-
-        m_LeakButton
-            .OnClickAsObservable()
-            .Subscribe(_ =>
-            {
-                int id = ++m_LeakedCount;
-                Observable
-                    .Interval(System.TimeSpan.FromSeconds(5))
-                    .Subscribe(_ => Debug.Log($"[LifetimeDemo] 누수 구독 #{id} tick (해제 불가!)"));
-                UpdateStatus($"누수 구독 #{id} 생성 — Tracker로 확인해 보세요");
-            })
-            .AddTo(this);
-
-        m_TrackerButton.OnClickAsObservable().Subscribe(_ => DumpTracker()).AddTo(this);
-
-        m_DestroyProbeButton
-            .OnClickAsObservable()
-            .Subscribe(_ =>
-            {
-                if (m_ProbeObject != null)
-                {
-                    Destroy(m_ProbeObject);
-                    UpdateStatus("프로브 파괴 — Tracker에서 프로브 구독이 사라졌는지 확인");
-                }
-                else
-                {
-                    UpdateStatus("프로브가 이미 파괴되었습니다");
-                }
-            })
-            .AddTo(this);
-
-        UpdateStatus("대기 중");
-    }
+    private void Start() { }
 
     private void DumpTracker()
     {
@@ -127,13 +72,7 @@ public class MyLifetimeDemo : MonoBehaviour
 
 public class MyLifetimeProbe : MonoBehaviour
 {
-    private void Start()
-    {
-        Observable
-            .Interval(System.TimeSpan.FromSeconds(3))
-            .Subscribe(_ => Debug.Log("[LifetimeProbe] 살아 있음 (AddTo로 수명 묶임)"))
-            .AddTo(this);
-    }
+    private void Start() { }
 
     private void OnDestroy()
     {

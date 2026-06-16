@@ -37,65 +37,7 @@ public class MyCreateStreamsDemo : MonoBehaviour
     private int m_SubjectCount;
     private int m_LegacyScore;
 
-    private void Start()
-    {
-        m_RangeButton
-            .OnClickAsObservable()
-            .Subscribe(_ =>
-            {
-                Log("--- Range(1, 4) 구독 ---");
-                Observable
-                    .Range(1, 4)
-                    .Subscribe(x => Log($"Range OnNext: {x}"), result => Log($"Range OnCompleted: {result}"))
-                    .AddTo(this);
-            })
-            .AddTo(this);
-
-        m_TimerButton
-            .OnClickAsObservable()
-            .Subscribe(_ =>
-            {
-                Log("Timer(2초) 시작...");
-                Observable.Timer(TimeSpan.FromSeconds(2)).Subscribe(_ => Log("Timer 발행! (2초 경과)")).AddTo(this);
-            })
-            .AddTo(this);
-
-        m_IntervalToggleButton
-            .OnClickAsObservable()
-            .Subscribe(_ =>
-            {
-                if (m_IntervalSubscription == null)
-                {
-                    int tick = 0;
-                    m_IntervalSubscription = Observable
-                        .Interval(TimeSpan.FromSeconds(1))
-                        .Subscribe(_ => Log($"Interval tick {++tick}"))
-                        .AddTo(this);
-                    Log("Interval 시작 (1초 간격)");
-                    SetToggleLabel("Interval 중지");
-                }
-                else
-                {
-                    m_IntervalSubscription.Dispose();
-                    m_IntervalSubscription = null;
-                    Log("Interval 중지 (Dispose 호출)");
-                    SetToggleLabel("Interval 시작");
-                }
-            })
-            .AddTo(this);
-
-        m_Subject.Subscribe(msg => Log($"Subject 수신: {msg}")).AddTo(this);
-        m_SubjectButton
-            .OnClickAsObservable()
-            .Subscribe(_ => m_Subject.OnNext($"메시지 #{++m_SubjectCount}"))
-            .AddTo(this);
-
-        Observable
-            .FromEvent<int>(h => LegacyScoreEvent += h, h => LegacyScoreEvent -= h)
-            .Subscribe(score => Log($"FromEvent 수신: 점수 {score}"))
-            .AddTo(this);
-        m_EventButton.OnClickAsObservable().Subscribe(_ => LegacyScoreEvent?.Invoke(m_LegacyScore += 10)).AddTo(this);
-    }
+    private void Start() { }
 
     private void SetToggleLabel(string text)
     {

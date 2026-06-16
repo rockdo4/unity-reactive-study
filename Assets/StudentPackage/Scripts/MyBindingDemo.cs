@@ -40,49 +40,7 @@ public class MyBindingDemo : MonoBehaviour
 
     private const int SkillMpCost = 20;
 
-    private void Start()
-    {
-        m_Hp.Subscribe(hp => m_HpText.text = $"HP : {hp}").AddTo(this);
-        m_Mp.Subscribe(mp => m_MpText.text = $"MP : {mp}").AddTo(this);
-
-        m_Hp.Select(hp =>
-                hp <= 0 ? "쓰러짐"
-                : hp < 30 ? "위험"
-                : hp < 70 ? "주의"
-                : "안전"
-            )
-            .DistinctUntilChanged()
-            .Subscribe(state =>
-            {
-                m_HpStateText.text = $"상태: {state}";
-                m_HpStateText.color = state switch
-                {
-                    "안전" => Color.green,
-                    "주의" => Color.yellow,
-                    _ => Color.red,
-                };
-            })
-            .AddTo(this);
-
-        m_Hp.CombineLatest(m_Mp, (hp, mp) => hp > 0 && mp >= SkillMpCost)
-            .DistinctUntilChanged()
-            .Subscribe(canUse => m_SkillButton.interactable = canUse)
-            .AddTo(this);
-
-        m_DamageButton.OnClickAsObservable().Subscribe(_ => m_Hp.Value = Mathf.Max(0, m_Hp.Value - 10)).AddTo(this);
-        m_HealButton.OnClickAsObservable().Subscribe(_ => m_Hp.Value = Mathf.Min(100, m_Hp.Value + 10)).AddTo(this);
-        m_UseMpButton.OnClickAsObservable().Subscribe(_ => m_Mp.Value = Mathf.Max(0, m_Mp.Value - 5)).AddTo(this);
-        m_RestoreMpButton.OnClickAsObservable().Subscribe(_ => m_Mp.Value = Mathf.Min(50, m_Mp.Value + 5)).AddTo(this);
-
-        m_SkillButton
-            .OnClickAsObservable()
-            .Subscribe(_ =>
-            {
-                m_Mp.Value -= SkillMpCost;
-                m_SkillLogText.text = $"스킬 사용! (MP -{SkillMpCost}, 프레임 {Time.frameCount})";
-            })
-            .AddTo(this);
-    }
+    private void Start() { }
 
     private void OnDestroy()
     {

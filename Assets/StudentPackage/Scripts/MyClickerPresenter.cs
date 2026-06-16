@@ -60,20 +60,9 @@ public class MyClickerPresenter : MonoBehaviour
         BindView();
     }
 
-    private void BindInput()
-    {
-        // 교안 06 — 입력 스트림 가공:
-        //  · 클릭 스트림을 Share 로 공유 → 골드 획득(Model.Click)
-        //  · 콤보(Select+Merge(Debounce)+Scan), 콤보 보너스(Where)
-        //  · 피버 버튼 ThrottleFirst(쿨다운), 업그레이드 구매 구독
-    }
+    private void BindInput() { }
 
-    private void BindView()
-    {
-        // 교안 06 — Model 의 ReactiveProperty → UI 바인딩:
-        //  · Gold/Stats(CombineLatest)/비용 텍스트
-        //  · CanBuy* → 버튼 interactable, IsFever → 안내문구·클릭 버튼 색
-    }
+    private void BindView() { }
 
     private void Log(string message)
     {

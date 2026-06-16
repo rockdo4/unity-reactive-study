@@ -22,38 +22,8 @@ public class MyAsyncDemo : MonoBehaviour
     private int m_SequentialCount;
     private int m_DropCount;
 
-    private void Start()
-    {
-        m_SequentialButton
-            .OnClickAsObservable()
-            .SubscribeAwait(
-                async (_, ct) =>
-                {
-                    int id = ++m_SequentialCount;
-                    Log($"[순차] 로드 #{id} 시작...");
-                    await FakeLoadAsync(ct);
-                    Log($"[순차] 로드 #{id} 완료");
-                },
-                AwaitOperation.Sequential
-            )
-            .AddTo(this);
+    private void Start() { }
 
-        m_DropButton
-            .OnClickAsObservable()
-            .SubscribeAwait(
-                async (_, ct) =>
-                {
-                    int id = ++m_DropCount;
-                    Log($"[드롭] 로드 #{id} 시작... (처리 중 클릭은 무시)");
-                    await FakeLoadAsync(ct);
-                    Log($"[드롭] 로드 #{id} 완료");
-                },
-                AwaitOperation.Drop
-            )
-            .AddTo(this);
-    }
-
-    // 프로젝트의 단발 비동기는 UniTask로 작성한다.
     private static async UniTask FakeLoadAsync(CancellationToken ct)
     {
         await UniTask.Delay(TimeSpan.FromSeconds(1.5), cancellationToken: ct);

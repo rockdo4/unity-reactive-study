@@ -14,7 +14,7 @@ namespace ReactiveStudy.Tools.Editor
     /// <summary>
     /// 학생 배포용 씬·스크립트(<c>Assets/StudentPackage/</c>)를 생성하고 .unitypackage 로 익스포트한다.
     /// 강사용 데모 컴포넌트를 <c>My*</c> 타입으로 스왑해 학생 씬을 만든다.
-    /// 배포 단위는 두 패키지: 1) 1부 통합 기초(완성본·공통 폰트 포함) 2) 2부 클리커(스켈레톤).
+    /// 배포 단위는 두 패키지: 1) 1부 통합 기초(스켈레톤·공통 폰트 포함) 2) 2부 클리커(스켈레톤). 두 배포본 모두 주석을 제거해 배포한다.
     /// 메뉴: Tools > Reactive Study > Student Package > ...
     ///
     /// 절차·운영 규칙은 <c>Docs/강사용/00. 학생 배포 가이드.md</c> 참조.
@@ -28,13 +28,13 @@ namespace ReactiveStudy.Tools.Editor
         private const string BasicsScenePath = ScenesFolder + "/ReactiveBasics.unity";
         private const string ClickerScenePath = ScenesFolder + "/ReactiveClicker.unity";
 
-        // 배포 패키지 2종.
-        // 1) 1부 통합 기초: 폰트·TMP 설정(공통) + 통합 5섹션 씬 + 기초 My* 5종. 학생이 가장 먼저 임포트한다.
+        // 배포 패키지 2종. 두 배포본의 My* 스크립트는 R3 본문을 비운 스켈레톤이며 주석을 제거해 배포한다(라이브 코딩).
+        // 1) 1부 통합 기초: 폰트·TMP 설정(공통) + 통합 5섹션 씬 + 기초 My* 5종(스켈레톤). 학생이 가장 먼저 임포트한다.
         // 2) 2부 클리커: 클리커 씬(스켈레톤) + 클리커 My* 2종. 폰트는 1)에서 이미 들어왔다고 가정.
         private static readonly (string Title, string FileName, string[] AssetPaths)[] Packages =
         {
             (
-                "1. R3 기초 통합 (완성본 · 공통 폰트 포함)",
+                "1. R3 기초 통합 (스켈레톤 · 공통 폰트 포함)",
                 "R3Lecture-Student-1-Basics",
                 new[]
                 {
@@ -135,7 +135,7 @@ namespace ReactiveStudy.Tools.Editor
             return failures;
         }
 
-        /// <summary>1부 통합 기초 씬: 강사용 통합 씬을 빌드한 뒤 데모 5종을 My* 로 스왑(완성본).</summary>
+        /// <summary>1부 통합 기초 씬: 강사용 통합 씬을 빌드한 뒤 데모 5종을 My* 로 스왑(스켈레톤).</summary>
         private static void BuildBasicsStudentScene()
         {
             ReactiveBasicsSceneCreator.BuildScene(save: false);
