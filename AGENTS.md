@@ -24,6 +24,7 @@ Unity 6.3 / URP 17 프로젝트. Claude Code·Cursor 등 모든 에이전트의 
 - **강사용 데모 씬**은 **통합 기초 씬(1부, 5섹션 2열)과 클리커 씬(2부)** SceneCreator가 정본이며 **커밋하지 않는다**(`Assets/Scenes/*.unity`는 `.gitignore`). `Tools > Reactive Study > Create All Scenes`로 두 씬을 생성·갱신한다. 1부 통합 씬은 `ReactiveBasicsSceneCreator`가 챕터별 `Build*Panel`을 재사용해 조립한다.
 - **학생 배포**: 교안은 노션, 데모는 `Assets/StudentPackage/`(클래스명 `My*`, **1부·2부 모두 R3 본문을 비운 스켈레톤** — 수업 중 강사와 한 줄씩 라이브 코딩)에서 익스포트한 **패키지 2종**(① 1부 기초 통합 + 공통 폰트/TMP, ② 2부 클리커)으로 배포한다(학생은 빈 URP 프로젝트, 1부 패키지를 가장 먼저 임포트). 배포되는 `My*` 코드는 **주석을 전부 제거**해 배포한다(안내는 따라하기 문서·강의로). StudentPackage의 씬·스크립트는 커밋한다. 절차·운영 규칙은 `Docs/강사용/00. 학생 배포 가이드.md`.
 - **동기화 규칙**: 강사용 런타임 코드(`Assets/Scripts/`)나 씬 구성을 바꾸면 → 대응 `My*` 스크립트(`Assets/StudentPackage/Scripts/`)를 같이 고치고 → `Create All Student Scenes`로 학생 씬을 재생성하고 → 해당 패키지를 다시 익스포트한다. `My*`의 직렬화 필드명은 원본과 **동일**해야 한다(`StudentPackageCreator`의 SwapComponent가 필드명으로 값을 복사하며, 어긋나면 명시적 예외로 실패).
+- **capstone 과제(타이밍 바)**: 학생이 빈 씬에서 스스로 완성하는 자력 과제. 두더지 모델 — **스켈레톤·학생 패키지 없이** 완성본 윈도우 빌드 + 과제 명세만 배포한다. 모범답안(강사 전용)은 `Assets/Scripts/TimingBar/`(MVP: `TimingBarModel`/`TimingBarPresenter`), 정본 씬은 `Tools > Reactive Study > 03. 타이밍 바(과제 정본) 씬 생성`(빌드·시연용, 비커밋). 학생 명세 `Docs/과제/`, 운영 `Docs/강사용/07...`.
 - **문서**: `Docs/교안/`(학생용·노션 배포, 01~05) — **순수 개념·이론·일반 코드 예제만** 담고 데모 따라하기·씬 이름·저장소 경로(`Assets/...`)·강사용 링크·타 차시 인용은 넣지 않는다(각 장은 독립적으로 읽힌다). 데모 따라하기·시연 대본은 `Docs/강사용/`(차시별 이론/따라하기 + 사전 학습·학생 배포 가이드)에 둔다. 연습문제(실습)는 강의에서 빠졌고 `Archive/실습/`에 보관한다.
 
 ## 패키지 소스

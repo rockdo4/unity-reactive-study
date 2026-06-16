@@ -1,0 +1,20 @@
+{
+    "name": "TimingBar",
+    "rootNamespace": "ReactiveStudy.TimingBar",
+    "references": [
+        "R3.Unity",
+        "UniTask",
+        "Unity.InputSystem",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
