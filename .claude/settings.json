@@ -11,10 +11,13 @@
       "Bash(npm run format*)"
     ],
     "deny": [
-      "Write(./**/*.meta)",
-      "Edit(./**/packages-lock.json)",
+      "Edit(./**/*.meta)",
       "Edit(./**/*.unity)",
-      "Write(./**/*.unity)"
+      "Edit(./**/*.prefab)",
+      "Edit(./**/*.asset)",
+      "Edit(./**/*.mat)",
+      "Edit(./Packages/packages-lock.json)",
+      "Edit(./ProjectSettings/**)"
     ],
     "defaultMode": "default"
   },

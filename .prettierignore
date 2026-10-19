@@ -9,6 +9,8 @@ obj/
 Build/
 build/
 UserSettings/
+Packages/packages-lock.json
+ProjectSettings/
 
 # Unity YAML / 메타 (UnityYAMLMerge·에디터 전용)
 **/*.meta
