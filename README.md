@@ -73,7 +73,7 @@ Unity 6.3 / URP 17 기반 **R3 리액티브 프로그래밍 강의용 저장소*
 2. 최초 1회 로컬 개발 환경을 초기화합니다(CSharpier·Prettier 포맷 훅 등):
 
     ```bash
-    bash .claude/skills/setup/setup.sh   # Claude Code: /setup 스킬로도 실행 가능
+    bash .agents/skills/setup/setup.sh   # Claude Code: /setup 스킬로도 실행 가능
     ```
 
 3. `Tools > Reactive Study > Create All Scenes`로 데모 씬을 생성한 뒤, `Assets/Scenes/`에서 학습할 씬을 열고 Play를 누릅니다.
@@ -88,4 +88,4 @@ Unity 6.3 / URP 17 기반 **R3 리액티브 프로그래밍 강의용 저장소*
 
 - R3 공식 저장소: <https://github.com/Cysharp/R3>
 - R3 발표 글(저자 neuecc): <https://neuecc.medium.com/r3-a-new-modern-reimplementation-of-reactive-extensions-for-c-cf29abcc5826>
-- 로컬 개발 환경 초기화(포맷터 등): `bash .claude/skills/setup/setup.sh` (Claude Code: `/setup`)
+- 로컬 개발 환경 초기화(포맷터 등): `bash .agents/skills/setup/setup.sh` (Claude Code: `/setup`)

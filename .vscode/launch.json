@@ -5,11 +5,6 @@
       "name": "Attach to Unity (VS Code · vstuc)",
       "type": "vstuc",
       "request": "attach"
-    },
-    {
-      "name": "Attach to Unity (Cursor · DotRush)",
-      "type": "unity",
-      "request": "attach"
     }
   ]
 }

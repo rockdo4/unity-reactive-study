@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Unity 6.3 / URP 17 프로젝트. Claude Code·Cursor 등 모든 에이전트의 공통 지침.
+Unity 6.3 / URP 17 프로젝트. 모든 코딩 에이전트의 공통 지침.
 
 ## 편집 금지 (Unity가 관리)
 
@@ -11,13 +11,13 @@ Unity 6.3 / URP 17 프로젝트. Claude Code·Cursor 등 모든 에이전트의 
 ## 코드
 
 - 위치 `Assets/Scripts/`. 기능 단위 폴더마다 `.asmdef`(이름=폴더 경로, 에디터 전용은 Editor asmdef로 분리).
-- 스타일은 `.editorconfig`(C# 4-space, max 120). 작업을 마치면(Stop 훅) CSharpier·Prettier가 변경 파일을 일괄 자동 포맷하므로 수동 포맷 불필요(편집 도중에는 포맷되지 않는다).
+- 스타일은 `.editorconfig`(C# 4-space, max 120). 자동 포매터 훅은 쓰지 않는다. **커밋 전에 `npm run format:changed`**(변경·신규 파일만 CSharpier·Prettier)를 실행한다.
 - 입력은 Input System(레거시 Input Manager 금지), 렌더는 URP.
 
 ## 컴파일·테스트
 
 - Unity 에디터가 컴파일한다. `dotnet build`/`dotnet test`로 검증하지 않는다(.csproj는 IDE용이며 Unity가 재생성).
-- 코드 변경 후 Unity MCP `Unity_GetConsoleLogs`로 에러를 확인한다. 테스트는 Unity Test Framework.
+- 코드 변경 후 열린 에디터에서 `unity` CLI로 에러를 확인한다(아래 「유니티 에디터 사용 규칙」). 테스트는 Unity Test Framework.
 
 ## 강의 자료·배포
 
@@ -26,6 +26,16 @@ Unity 6.3 / URP 17 프로젝트. Claude Code·Cursor 등 모든 에이전트의 
 - **동기화 규칙**: 강사용 런타임 코드(`Assets/Scripts/`)나 씬 구성을 바꾸면 → 대응 `My*` 스크립트(`Assets/StudentPackage/Scripts/`)를 같이 고치고 → `Create All Student Scenes`로 학생 씬을 재생성하고 → 해당 패키지를 다시 익스포트한다. `My*`의 직렬화 필드명은 원본과 **동일**해야 한다(`StudentPackageCreator`의 SwapComponent가 필드명으로 값을 복사하며, 어긋나면 명시적 예외로 실패).
 - **capstone 과제(타이밍 바)**: 두 난이도로 낸다. **A. 자력 완성(기본)** — 빈 씬에서 UI·코드 전부 학생이(두더지 모델). **스켈레톤·학생 패키지 없이** 완성본 윈도우 빌드 + 과제 명세만 배포. **B. UI 제공 스캐폴드(선택)** — UI·필드 와이어링까지 된 학생 패키지(③ `R3Lecture-Student-3-TimingBar`: `ReactiveTimingBar` 씬 + `MyTimingBarModel`/`MyTimingBarPresenter` 스켈레톤)를 배포, 학생은 Model 규칙 + Presenter R3만 채운다. B 스켈레톤은 1·2부와 달리 **빈 메서드 골격도 안 주고**(`Start()`만 비움) 스트림 구조까지 학생이 설계한다 — `My*` 필드명은 원본 `TimingBarPresenter`와 동일해야 SwapComponent가 와이어링을 복사한다. 모범답안(강사 전용)은 `Assets/Scripts/TimingBar/`(MVP: `TimingBarModel`/`TimingBarPresenter`), 정본 씬은 `Tools > Reactive Study > 03. 타이밍 바(과제 정본) 씬 생성`(빌드·시연용, 비커밋). 학생 명세 `Docs/과제/`(A·B 각 1종), 운영 `Docs/강사용/07...`.
 - **문서**: `Docs/교안/`(학생용·노션 배포, 01~05) — **순수 개념·이론·일반 코드 예제만** 담고 데모 따라하기·씬 이름·저장소 경로(`Assets/...`)·강사용 링크·타 차시 인용은 넣지 않는다(각 장은 독립적으로 읽힌다). 데모 따라하기·시연 대본은 `Docs/강사용/`(차시별 이론/따라하기 + 사전 학습·학생 배포 가이드)에 둔다. 연습문제(실습)는 강의에서 빠졌고 `Archive/실습/`에 보관한다.
+
+## 유니티 에디터 사용 규칙
+
+- 에디터는 **원본 체크아웃에 열린 하나만** 쓴다. worktree를 만들지 않고 원본 체크아웃에서 작업한다.
+- 에디터가 필요한 작업(씬·프리팹·에셋 변경, 플레이 모드, 테스트, 빌드)은 **한 번에 한 에이전트**만 한다. 문서 편집·코드 읽기처럼 에디터가 필요 없는 작업은 동시에 해도 된다.
+- `unity` CLI(`com.unity.pipeline`)에는 항상 `--project-path`를 붙인다.
+- 패키지 추가·제거는 `unity command package add|remove --project-path . --name <패키지> --confirm true --wait true`로 한다(`packages-lock.json`도 에디터가 갱신). 에디터가 닫혀 있을 때만 `Packages/manifest.json`을 직접 고친다.
+- 검증 — 실행 중인 에디터를 재사용한다(`unity status`로 연결 확인). `unity build`는 배치 모드로 에디터를 새로 띄우므로 에디터가 열려 있을 때는 쓰지 않는다:
+    - 컴파일: `unity recompile --project-path .` → `unity command console get --project-path . --level error`
+    - 테스트: `unity command test run --project-path . --mode editor`
 
 ## 패키지 소스
 

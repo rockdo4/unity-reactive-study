@@ -8,7 +8,7 @@ description: 템플릿을 클론한 직후 1회 실행하는 로컬 개발 환�
 `setup.sh`를 실행해 로컬 개발 환경을 초기화한다.
 
 ```bash
-bash .claude/skills/setup/setup.sh
+bash .agents/skills/setup/setup.sh
 ```
 
 ## 동작
@@ -18,6 +18,6 @@ bash .claude/skills/setup/setup.sh
 
 ## 수행 방법
 
-1. `bash .claude/skills/setup/setup.sh`를 실행한다.
+1. `bash .agents/skills/setup/setup.sh`를 실행한다.
 2. 자동 단계의 성공/실패를 요약해 보고한다.
 3. 출력된 UnityYAMLMerge 명령을 사용자에게 보여주고, **글로벌 git 설정을 변경해도 되는지 확인한 뒤에만** 실행한다.

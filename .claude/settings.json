@@ -20,17 +20,5 @@
       "Edit(./ProjectSettings/**)"
     ],
     "defaultMode": "default"
-  },
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .claude/hooks/format-on-stop.sh"
-          }
-        ]
-      }
-    ]
   }
 }
